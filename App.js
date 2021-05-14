@@ -1,21 +1,49 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import { View, StyleSheet, Animated, TouchableOpacity } from 'react-native';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+class Animations extends Component {
+  state = {
+    data: null,
+  };
+	componentWillMount = () => {
+		this.animatedWidth = new Animated.Value (50)
+		this.animatedHeight = new Animated.Value(100)
+	}
+	animatedBox = () => {
+		Animated.timing(this.animatedWidth, {
+			toValue: 200,
+			duration: 1000
+		}).start()
+		Animated.timing(this.animatedHeight, {
+			toValue: 500,
+			duration: 500
+		}).start()
+	}
+	
+	render() {
+		const animatedStyle = { width: this.animatedWidth, height: this.animatedHeight }
+		return (
+			<TouchableOpacity style = {styles.container} onPress = {this.aanimatedBox}>
+				<Animated.View style = {[ styles.box, animatedStyle ]}/> 
+			</TouchableOpacity>
+		)
+	}
 }
+export default Animations
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+	container: {
+		justifyContent: 'center',
+		alignItems: 'center'
   },
+	box: {
+		backgroundColor: 'blue',
+		width: 50,
+		height: 100
+	}
 });
+
+	
+	
+    
