@@ -34,6 +34,7 @@ export default Animations
 
 const styles = StyleSheet.create({
 	container: {
+    margin: 50,
 		justifyContent: 'center',
 		alignItems: 'center'
   },
